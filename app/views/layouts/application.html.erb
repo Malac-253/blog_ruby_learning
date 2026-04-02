@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Blog" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="container prose mx-auto">
+
+      <p class="notice bg-green-100 text-green-800 p-4 rounded-lg"><%= notice %></p>
+      <p class="alert bg-red-100 text-red-800 p-4 rounded-lg"><%= alert %></p>
+
+      <div>
+        <% if user_signed_in? %>
+          <%= link_to "Profile", edit_registration_path(:user) %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "inline underline text-inherit bg-transparent border-0 p-0 cursor-pointer font-inherit" %>
+        <% end %>
+      </div>
+
+
+    <%= yield %>
+  </body>
+</html>
