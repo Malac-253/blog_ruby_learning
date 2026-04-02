@@ -4,8 +4,9 @@
 # belong in git's global ignore instead:
 # `$XDG_CONFIG_HOME/git/ignore` or `~/.config/git/ignore`
 
-# Ignore bundler config.
-/.bundle
+# Bundler: ignore local cache; allow `.bundle/config` (e.g. BUNDLE_FORCE_RUBY_PLATFORM for Linux deploys).
+/.bundle/*
+!/.bundle/config
 
 # Ignore all environment files (except templates).
 /.env*
